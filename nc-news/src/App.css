@@ -74,7 +74,7 @@ nav {
   display: flex;
   align-items: start;
   gap: 0.75rem;
-  background-color: #a8d8ea; /* your blue */
+  background-color: #ffffff;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #c0dce8;
   flex-direction: row;
@@ -183,6 +183,10 @@ nav {
   margin-bottom: 10px;
   align-self: stretch;
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   justify-content: flex-end;
 }
 
@@ -190,7 +194,7 @@ nav {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  margin: 10px;
+  margin-top: 50px;
 }
 
 .sort-btn {
@@ -233,4 +237,19 @@ nav {
 .comment-wrapper img {
   width: 20px;
   height: 20px;
+}
+.topic h2 {
+  font-family: "DM Mono", monospace;
+}
+
+.pop-up {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 400px;
+  background: white;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  padding: 1rem;
 }

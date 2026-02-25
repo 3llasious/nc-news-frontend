@@ -28,6 +28,10 @@ function Article({ articleobj }) {
   const date = dateRaw.slice(0, 10);
   const time = dateRaw.slice(11, 16);
 
+  const getAuthourPic = () => {
+    return authorImg;
+  };
+
   return (
     <div className="card">
       <div className="card-header">

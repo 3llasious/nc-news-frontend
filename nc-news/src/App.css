@@ -1,0 +1,236 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  z-index: 100;
+  background: white;
+}
+
+:root {
+  --bg: #f5f3ef;
+  --card-bg: #ffffff;
+  --shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.12);
+  --radius: 28px;
+  --get: #d4edda;
+  --get-text: #1a6630;
+  --post: #cce5ff;
+  --post-text: #004085;
+  --patch: #fff3cd;
+  --patch-text: #856404;
+  --delete: #f8d7da;
+  --delete-text: #721c24;
+  --error: #e8d5f5;
+  --error-text: #5b2d8e;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  background-color: #a8d8ea; /* your blue */
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #c0dce8;
+  flex-direction: row;
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border: solid;
+  border-color: #ff1717;
+  border-radius: 50%; /* makes it circular like your pink circle */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.card-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: start;
+}
+
+.article-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.article-author {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.article-date {
+  font-size: 0.7rem;
+  color: #444;
+}
+
+.card-body {
+  padding: 1rem;
+  background-color: #fff9c4; /* your yellow */
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.user-pic {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: solid;
+  justify-content: end;
+}
+
+.image-wrapper {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.article-image {
+  display: block;
+  width: 100%;
+}
+
+.overlay-btn {
+  display: flex; /* better than block */
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: transparent; /* 🔥 important */
+  cursor: pointer;
+}
+
+.button-row {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  padding: 0.5rem 1.5rem;
+  margin: 5px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background: white;
+  font-size: 1rem;
+}
+
+.headings {
+  background-color: #f9f7ee;
+  padding: 10px;
+  margin-bottom: 10px;
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sort-btns {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin: 10px;
+}
+
+.sort-btn {
+  padding: 0.5rem 1.5rem;
+  margin: 5px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background: white;
+  font-size: 1rem;
+}
+
+.vote-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.vote-wrapper {
+  display: inline-flex;
+  align-items: center;
+  background: #f1f1f1; /* use light grey so it’s visible */
+  border-radius: 12px;
+  padding: 7px 10px;
+}
+
+.vote-wrapper button + button {
+  margin-left: 20px;
+}
+
+.comment-wrapper {
+  display: inline-flex;
+  align-items: center;
+  background: #f1f1f1;
+  border-radius: 12px;
+  padding: 7px 20px;
+  gap: 20px;
+}
+
+.comment-wrapper img {
+  width: 20px;
+  height: 20px;
+}

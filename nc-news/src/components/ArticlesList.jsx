@@ -6,12 +6,11 @@ import {
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 import Article from "./Article";
 import Thread from "./TopicPage";
-import { Link } from "react-router-dom";
 import LoadingState from "./LoadingState";
 
 function ArticlesList() {
   const [articlesArr, setArticlesArr] = useState([]);
-  const [voteChange, setVoteChange] = useState(0);
+
   const [commentsOpen, setCommentsOpen] = useState(false);
 
   //will be a pulsating "welcome to the digest" title when loading
@@ -41,10 +40,10 @@ function ArticlesList() {
     setArticlesArr(articles);
   };
 
-  return !articlesArr ? (
+  return articlesArr.length === 0 ? (
     <LoadingState isLoading />
   ) : (
-    <div>
+    <div className="article-list">
       <div className="sort-btns">
         <button className="sort-btn" onClick={latestHandler}>
           latest

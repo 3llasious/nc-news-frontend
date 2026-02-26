@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   fetchAllArticles,
   fetchAllUsers,
+  sendVote,
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 import Threads from "./CommentsLi";
 import { Link } from "react-router-dom";
@@ -13,6 +14,8 @@ function Article({ articleobj, openPopup, closePopup }) {
   const [authorImg, setAuthorImg] = useState(null);
   const [open, setOpen] = useState(false);
   const [commentClicked, setCommentClicked] = useState(0);
+  const [voted, setVoted] = useState(0);
+  const [voteChange, setVoteChange] = useState(0);
 
   useEffect(() => {
     const getUserImg = async () => {
@@ -32,14 +35,29 @@ function Article({ articleobj, openPopup, closePopup }) {
   const date = dateRaw.slice(0, 10);
   const time = dateRaw.slice(11, 16);
 
-  const getAuthourPic = () => {
-    return authorImg;
-  };
+  console.log(articleobj);
 
   const handleClose = () => {
     setOpen(false);
     setCommentClicked(0);
     closePopup();
+  };
+
+  const handleUpvote = async () => {
+    setVoteChange(1);
+    setVoted(1);
+    await sendVote(articleobj.article_id, 1);
+  };
+
+  const handleDownvote = async () => {
+    setVoteChange(-1);
+    setVoted(1);
+    await sendVote(articleobj.article_id, -1);
+  };
+
+  const resetVote = () => {
+    setVoted(0);
+    setVoteChange(0);
   };
 
   return (
@@ -63,6 +81,7 @@ function Article({ articleobj, openPopup, closePopup }) {
           />
         </Link>
         <div className="image-overlay">
+          <h3 className="topic">in @{articleobj.topic}</h3>
           <h1 className="article-title">{articleobj.title}</h1>
           <div className="button-row">
             <span
@@ -85,11 +104,17 @@ function Article({ articleobj, openPopup, closePopup }) {
             </span>
 
             <span className="vote-wrapper">
-              <div className="vote-text">{articleobj.votes}</div>
-              <button className="overlay-btn">
+              <div className="vote-text">{articleobj.votes + voteChange}</div>
+              <button
+                onClick={() => (voted === 0 ? handleUpvote() : resetVote())}
+                className="overlay-btn"
+              >
                 <img src={upvoteIcon} alt="" />
               </button>
-              <button className="overlay-btn">
+              <button
+                onClick={() => (voted === 0 ? handleDownvote() : resetVote())}
+                className="overlay-btn"
+              >
                 <img src={downvoteIcon} alt="" />
               </button>
             </span>

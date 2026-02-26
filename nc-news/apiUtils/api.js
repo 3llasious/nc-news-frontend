@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const fetchAllArticles = async () => {
   const url = "https://nc-backend-solosprint.onrender.com/api/articles";
   const articles = (await fetch(url)).json();
@@ -44,4 +46,10 @@ export const fetchComments = async (article_id) => {
   const url = `https://nc-backend-solosprint.onrender.com/api/articles/${article_id}/comments`;
   const comments = (await fetch(url)).json();
   return comments;
+};
+
+export const sendVote = async (articleId, num) => {
+  const url = `https://nc-backend-solosprint.onrender.com/api/articles/${articleId}`;
+  const { article } = await axios.patch(url, { inc_votes: num });
+  return article;
 };

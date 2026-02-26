@@ -6,7 +6,7 @@ import {
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 import { Link } from "react-router-dom";
 import LoadingState from "./LoadingState";
-import commentIcon from "../assets/comments.svg";
+
 import upvoteIcon from "../assets/up-vote.svg";
 import downvoteIcon from "../assets/down-vote.svg";
 import Threads from "./CommentsLi";
@@ -37,6 +37,10 @@ function ArticlePage() {
     getUserImg();
   }, [articlePage?.author]);
 
+  // const dateRaw = articlePage.created_at;
+  // const date = dateRaw.slice(0, 10);
+  // const time = dateRaw.slice(11, 16);
+
   return !articlePage.topic ? (
     <LoadingState isLoading />
   ) : (
@@ -57,6 +61,7 @@ function ArticlePage() {
         <div>
           <h3>{articlePage.title}</h3>
           <h4>by {articlePage.author}</h4>
+          <span className="article-date">{articlePage.created_at}</span>
         </div>
       </div>
 

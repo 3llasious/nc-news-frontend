@@ -1,15 +1,17 @@
 import {
   fetchAllTopicsquery,
   fetchAllTopicsSortquery,
+  fetchAllTopics,
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Article from "./Article";
 
 function Thread() {
   const { topic } = useParams();
   const [topicalArticles, setTopicalArticles] = useState([]);
   const [commentsOpen, setCommentsOpen] = useState(false);
+  const [allTopics, setAllTopics] = useState([]);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -20,7 +22,11 @@ function Thread() {
     fetchArticles();
   }, [topic]);
 
-  console.log(topicalArticles);
+  const fetchTopics = async () => {
+    const result = await fetchAllTopics();
+    const { topics } = result;
+    setAllTopics(topics);
+  };
 
   const popularHandler = async () => {
     const result = await fetchAllTopicsSortquery("votes", "desc", topic);
@@ -37,7 +43,7 @@ function Thread() {
   return !topicalArticles ? (
     <LoadingState isLoading />
   ) : (
-    <div>
+    <div className="article-list">
       <div className="sort-btns">
         <button className="sort-btn" onClick={latestHandler}>
           latest

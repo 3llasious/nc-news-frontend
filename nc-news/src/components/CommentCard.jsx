@@ -45,12 +45,21 @@ function CommentCard({ articleId, alignRight }) {
         {comments.map((comment) => {
           return (
             <div key={comment.comment_id}>
-              <img
-                style={{ float: alignRight ? "right" : "left" }}
-                className="user-pic"
-                src={comment.avatarImg}
-                alt=""
-              />
+              <div
+                className={
+                  alignRight ? "comment-header-right" : "comment-header"
+                }
+              >
+                <img
+                  style={{ float: alignRight ? "right" : "left" }}
+                  className="user-pic"
+                  src={comment.avatarImg}
+                  alt=""
+                />
+
+                <span className="article-author">@{comment.author}</span>
+              </div>
+
               <div
                 className="comments-divider"
                 style={{ maxWidth: alignRight ? "70%" : "100%" }}
@@ -86,13 +95,16 @@ function CommentCard({ articleId, alignRight }) {
       {comments.map((comment) => {
         return (
           <div key={comment.comment_id}>
-            <span>{comment.author}</span>
-            <img
-              style={{ float: alignRight ? "right" : "left" }}
-              className="user-pic"
-              src={comment.avatarImg}
-              alt=""
-            />
+            <div className="comment-header">
+              <img
+                style={{ float: alignRight ? "right" : "left" }}
+                className="user-pic"
+                src={comment.avatarImg}
+                alt=""
+              />
+              <span className="article-author">@{comment.author}</span>
+            </div>
+
             <div
               className="comments-divider"
               style={{ maxWidth: alignRight ? "70%" : "100%" }}
@@ -100,9 +112,11 @@ function CommentCard({ articleId, alignRight }) {
               {comment.body}
             </div>
             <div className="comments-prompt">
-              <button className="comment-wrapper">
-                <img src={commentIcon} alt="" />
-              </button>
+              <Link to={`/articles/${articleId}`}>
+                <button className="comment-wrapper">
+                  <img src={commentIcon} alt="" />
+                </button>
+              </Link>
 
               <p>join the conversation</p>
               <span className="vote-wrapper">

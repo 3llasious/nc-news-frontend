@@ -1,47 +1,40 @@
-import { useEffect, useState } from "react";
 import {
-  fetchAllArticles,
-  fetchAllUsers,
-  fetchAllArticlesquery,
+  fetchAllTopicsquery,
+  fetchAllTopicsSortquery,
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Article from "./Article";
-import Thread from "./TopicPage";
-import { Link } from "react-router-dom";
-import LoadingState from "./LoadingState";
 
-function ArticlesList() {
-  const [articlesArr, setArticlesArr] = useState([]);
-  const [voteChange, setVoteChange] = useState(0);
+function Thread() {
+  const { topic } = useParams();
+  const [topicalArticles, setTopicalArticles] = useState([]);
   const [commentsOpen, setCommentsOpen] = useState(false);
 
-  //will be a pulsating "welcome to the digest" title when loading
-
   useEffect(() => {
-    async function getArticles() {
-      try {
-        const result = await fetchAllArticles();
-        const { articles } = result;
-        setArticlesArr(articles);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getArticles();
-  }, []);
+    const fetchArticles = async () => {
+      const result = await fetchAllTopicsquery(topic);
+      const { articles } = result;
+      setTopicalArticles(articles);
+    };
+    fetchArticles();
+  }, [topic]);
+
+  console.log(topicalArticles);
 
   const popularHandler = async () => {
-    const result = await fetchAllArticlesquery("votes", "desc");
+    const result = await fetchAllTopicsSortquery("votes", "desc", topic);
     const { articles } = result;
-    setArticlesArr(articles);
+    setTopicalArticles(articles);
   };
   const latestHandler = async () => {
-    const result = await fetchAllArticlesquery("created_at", "desc");
+    const result = await fetchAllTopicsSortquery("created_at", "desc", topic);
     const { articles } = result;
     console.log(result);
-    setArticlesArr(articles);
+    setTopicalArticles(articles);
   };
 
-  return !articlesArr ? (
+  return !topicalArticles ? (
     <LoadingState isLoading />
   ) : (
     <div>
@@ -53,7 +46,10 @@ function ArticlesList() {
           popular
         </button>
       </div>
-      {articlesArr.map((article) => {
+      <div className="topic">
+        <h1>@{topic}</h1>
+      </div>
+      {topicalArticles.map((article) => {
         return (
           <>
             <Article
@@ -74,4 +70,4 @@ function ArticlesList() {
   );
 }
 
-export default ArticlesList;
+export default Thread;

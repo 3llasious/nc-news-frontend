@@ -5,10 +5,14 @@ import {
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 import Threads from "./CommentsLi";
 import { Link } from "react-router-dom";
+import commentsIcon from "../assets/comments.svg";
+import upvoteIcon from "../assets/up-vote.svg";
+import downvoteIcon from "../assets/down-vote.svg";
 
-function Article({ articleobj }) {
-  const [authorImg, setAuthorImg] = useState("");
-  const [commentsOpen, setCommentsOpen] = useState(false);
+function Article({ articleobj, openPopup, closePopup }) {
+  const [authorImg, setAuthorImg] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [commentClicked, setCommentClicked] = useState(0);
 
   useEffect(() => {
     const getUserImg = async () => {
@@ -32,12 +36,17 @@ function Article({ articleobj }) {
     return authorImg;
   };
 
+  const handleClose = () => {
+    setOpen(false);
+    setCommentClicked(0);
+    closePopup();
+  };
+
   return (
     <div className="card">
       <div className="card-header">
         <img className="author-avatar" src={authorImg} alt="author" />
         <div className="card-header-text">
-          <span className="article-title">{articleobj.title}</span>
           <span className="article-author">{articleobj.author}</span>
           <span className="article-date">
             posted {date} at {time}{" "}
@@ -53,34 +62,45 @@ function Article({ articleobj }) {
             alt=""
           />
         </Link>
+        <div className="image-overlay">
+          <h1 className="article-title">{articleobj.title}</h1>
+          <div className="button-row">
+            <span
+              className="comment-wrapper"
+              onClick={() => {
+                if (commentClicked === 0) {
+                  setCommentClicked(1);
+                  setOpen(true);
+                  openPopup();
+                } else {
+                  setCommentClicked(0);
+                  setOpen(false);
+                  closePopup();
+                }
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              <div className="vote-text">{articleobj.comment_count}</div>
+              <img src={commentsIcon} alt="" />
+            </span>
 
-        <div className="button-row">
-          <span
-            className="comment-wrapper"
-            onClick={() => setCommentsOpen(true)}
-            style={{ cursor: "pointer" }}
-          >
-            <div className="vote-text">{articleobj.comment_count}</div>
-            <img src="./src/assets/comments.svg" alt="" />
-          </span>
-
-          <span className="vote-wrapper">
-            <div className="vote-text">{articleobj.votes}</div>
-            <button className="overlay-btn">
-              <img src="./src/assets/up-vote.svg" alt="" />
-            </button>
-            <button className="overlay-btn">
-              <img src="./src/assets/down-vote.svg" alt="" />
-            </button>
-          </span>
+            <span className="vote-wrapper">
+              <div className="vote-text">{articleobj.votes}</div>
+              <button className="overlay-btn">
+                <img src={upvoteIcon} alt="" />
+              </button>
+              <button className="overlay-btn">
+                <img src={downvoteIcon} alt="" />
+              </button>
+            </span>
+          </div>
         </div>
       </div>
 
       <Threads
-        isOpen={commentsOpen}
-        closePopup={(e) => {
-          setCommentsOpen(false);
-        }}
+        articleName={articleobj.title}
+        isOpen={open}
+        closeComments={handleClose}
         articleId={articleobj.article_id}
       />
     </div>

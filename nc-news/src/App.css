@@ -72,20 +72,47 @@ nav {
 
 .card-header {
   display: flex;
-  align-items: start;
-  gap: 0.75rem;
-  background-color: #ffffff;
-  padding: 0.75rem 1rem;
+  align-items: center;
+  gap: 12px;
   border-bottom: 1px solid #c0dce8;
-  flex-direction: row;
+  padding-bottom: 10px;
+}
+
+.comments-prompt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #c0dce8;
+  padding-left: 15px;
+}
+.comments-prompt p {
+  margin-bottom: 10px;
+  line-height: 1.2;
+  color: gray;
+  max-width: 140px;
+  padding-left: 2px;
+}
+
+.comments-prompt .vote-wrapper {
+  margin-left: auto;
+}
+
+.card-header h3 {
+  margin: 0 0 4px 0;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-weight: 400;
+  color: gray;
 }
 
 .author-avatar {
-  width: 48px;
-  height: 48px;
-  border: solid;
-  border-color: #ff1717;
-  border-radius: 50%; /* makes it circular like your pink circle */
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -98,9 +125,16 @@ nav {
 }
 
 .article-title {
-  font-size: 1.3rem;
   font-weight: 600;
   text-align: left;
+  color: white;
+  display: block;
+  margin-bottom: 5rem;
+  font-family: "Playfair Display", serif;
+}
+
+.font {
+  font-family: "Playfair Display", serif;
 }
 
 .article-author {
@@ -123,6 +157,7 @@ nav {
   height: 48px;
   border-radius: 50%;
   flex-shrink: 0;
+  border: solid #004085;
 }
 
 .user-pic {
@@ -133,12 +168,23 @@ nav {
   flex-shrink: 0;
   border: solid;
   justify-content: end;
+  margin-top: 10px;
 }
 
 .image-wrapper {
   position: relative;
   display: block;
   overflow: hidden;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  border-radius: 0 0 12px 12px;
 }
 
 .article-image {
@@ -179,15 +225,15 @@ nav {
 
 .headings {
   background-color: #f9f7ee;
-  padding: 10px;
-  margin-bottom: 10px;
-  align-self: stretch;
+  padding: 10px 16px;
   display: flex;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
 }
 
 .sort-btns {
@@ -238,8 +284,22 @@ nav {
   width: 20px;
   height: 20px;
 }
-.topic h2 {
+.topic {
   font-family: "DM Mono", monospace;
+  text-align: left;
+  margin-bottom: 40px;
+  margin-top: 80px;
+}
+
+.topic .see-text {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0px;
+}
+
+.topic h2 {
+  margin: 0;
+  display: block;
 }
 
 .pop-up {
@@ -252,4 +312,73 @@ nav {
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
   z-index: 9999;
   padding: 1rem;
+  overflow-y: scroll;
+}
+
+/* Mobile responsive design - bottom up modal sheet */
+@media (max-width: 768px) {
+  .pop-up {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50vh;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    transition: height 0.3s ease;
+  }
+
+  .pop-up.expanded {
+    height: 95vh;
+  }
+}
+
+.comments-divider {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  background-color: #ffffff;
+  padding: 0.75rem 1rem;
+
+  flex-direction: row;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-title {
+  font-size: 5rem;
+  animation: pulse 0.7s ease-in-out infinite;
+  font-family: "Playfair Display", serif;
+}
+
+.header-title {
+  font-size: 2rem;
+  color: #ff383c;
+  font-family: "Playfair Display", serif;
+  margin: 0;
+  padding-left: 8px;
+}
+
+@keyframes pulse {
+  0% {
+    color: #ff383c;
+  }
+  50% {
+    color: #ffaaab;
+  }
+  100% {
+    color: #ff383c;
+  }
+}
+
+.action-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }

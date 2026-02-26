@@ -6,16 +6,16 @@ import search from "../assets/search.svg";
 function Nav() {
   return (
     <nav>
-      <button className="nav-btn">
-        <Link to="/">
+      <Link to="/">
+        <button className="nav-btn">
           <img src={FEED} alt="" />
-        </Link>
-      </button>
-      <button className="nav-btn">
-        <Link to="/search">
+        </button>
+      </Link>
+      <Link to="/search">
+        <button className="nav-btn">
           <img src={search} alt="" />
-        </Link>
-      </button>
+        </button>
+      </Link>
       <button className="nav-btn">post</button>
     </nav>
   );

@@ -54,19 +54,17 @@ function ArticlesList() {
       </div>
       {articlesArr.map((article) => {
         return (
-          <>
-            <Article
-              key={article.article_id}
-              articleobj={article}
-              openPopup={() => {
-                setCommentsOpen(true);
-              }}
-              closePopup={(e) => {
-                setCommentsOpen(false);
-              }}
-              isOpen={commentsOpen}
-            />
-          </>
+          <Article
+            key={article.article_id}
+            articleobj={article}
+            openPopup={() => {
+              setCommentsOpen(true);
+            }}
+            closePopup={(e) => {
+              setCommentsOpen(false);
+            }}
+            isOpen={commentsOpen}
+          />
         );
       })}
     </div>

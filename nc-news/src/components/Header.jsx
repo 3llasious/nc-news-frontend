@@ -4,11 +4,10 @@ function Header() {
   return (
     <div className="headings">
       <h2 className="header-title">The Digest</h2>
-      <div>
+      <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
         <Link to="/login">
           <button>login</button>
         </Link>
-
         <button className="user-pic" type="button"></button>
       </div>
     </div>

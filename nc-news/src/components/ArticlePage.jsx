@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import {
   fetchThisArticle,
   fetchAllUsers,
+  sendVote,
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 import { Link } from "react-router-dom";
 import LoadingState from "./LoadingState";
-
 import upvoteIcon from "../assets/up-vote.svg";
 import downvoteIcon from "../assets/down-vote.svg";
 import Threads from "./CommentsLi";
@@ -14,6 +14,8 @@ import Threads from "./CommentsLi";
 function ArticlePage() {
   const [articlePage, setArticlePage] = useState({});
   const [authorImg, setAuthorImg] = useState(null);
+  const [voted, setVoted] = useState(null);
+  const [voteChange, setVoteChange] = useState(0);
 
   const { article_id } = useParams();
 
@@ -35,11 +37,42 @@ function ArticlePage() {
       });
     };
     getUserImg();
-  }, [articlePage?.author]);
+  }, [articlePage.author]);
 
-  // const dateRaw = articlePage.created_at;
-  // const date = dateRaw.slice(0, 10);
-  // const time = dateRaw.slice(11, 16);
+  const date = articlePage.created_at
+    ? articlePage.created_at.slice(0, 10)
+    : "";
+  const time = articlePage.created_at
+    ? articlePage.created_at.slice(11, 16)
+    : "";
+
+  const handleUpvote = async () => {
+    try {
+      setVoteChange(1);
+      setVoted("up");
+      const result = await sendVote(articlePage.article_id, 1);
+    } catch (err) {
+      resetVote();
+    }
+  };
+
+  const handleDownvote = async () => {
+    try {
+      setVoteChange(-1);
+      setVoted("down");
+      const result = await sendVote(articlePage.article_id, -1);
+    } catch (err) {
+      resetVote();
+    }
+  };
+
+  const resetVote = async () => {
+    const num = -voteChange;
+    setVoted(null);
+    setVoteChange(0);
+    const result = await sendVote(articlePage.article_id, num);
+    console.log(result);
+  };
 
   return !articlePage.topic ? (
     <LoadingState isLoading />
@@ -61,18 +94,28 @@ function ArticlePage() {
         <div>
           <h3>{articlePage.title}</h3>
           <h4>by {articlePage.author}</h4>
-          <span className="article-date">{articlePage.created_at}</span>
+          <span className="article-date">
+            posted at {date},{time}
+          </span>
         </div>
       </div>
 
       <p style={{ marginBottom: "1.7rem" }}>{articlePage.body}</p>
       <div style={{ marginBottom: "5rem" }} className="action-row">
         <span className="vote-wrapper">
-          <div className="vote-text">{articlePage.votes}</div>
-          <button className="overlay-btn">
+          <div className="vote-text">{articlePage.votes + voteChange}</div>
+          <button
+            onClick={() => (voted === null ? handleUpvote() : resetVote())}
+            className={voted === "up" ? "btn-active" : "overlay-btn"}
+            disabled={voted === "down"}
+          >
             <img src={upvoteIcon} alt="" />
           </button>
-          <button className="overlay-btn">
+          <button
+            onClick={() => (voted === null ? handleDownvote() : resetVote())}
+            className={voted === "down" ? "btn-active" : "overlay-btn"}
+            disabled={voted === "up"}
+          >
             <img src={downvoteIcon} alt="" />
           </button>
         </span>

@@ -14,7 +14,7 @@ function Article({ articleobj, openPopup, closePopup }) {
   const [authorImg, setAuthorImg] = useState(null);
   const [open, setOpen] = useState(false);
   const [commentClicked, setCommentClicked] = useState(0);
-  const [voted, setVoted] = useState(0);
+  const [voted, setVoted] = useState(null);
   const [voteChange, setVoteChange] = useState(0);
 
   useEffect(() => {
@@ -28,14 +28,12 @@ function Article({ articleobj, openPopup, closePopup }) {
       });
     };
     getUserImg();
-  }, [articleobj?.author]);
+  }, [articleobj.author]);
 
   //change later when we add a single user id path or id queries to the backend
   const dateRaw = articleobj.created_at;
   const date = dateRaw.slice(0, 10);
   const time = dateRaw.slice(11, 16);
-
-  console.log(articleobj);
 
   const handleClose = () => {
     setOpen(false);
@@ -44,33 +42,47 @@ function Article({ articleobj, openPopup, closePopup }) {
   };
 
   const handleUpvote = async () => {
-    setVoteChange(1);
-    setVoted(1);
-    await sendVote(articleobj.article_id, 1);
+    try {
+      setVoteChange(1);
+      setVoted("up");
+      const result = await sendVote(articleobj.article_id, 1);
+    } catch (err) {
+      resetVote();
+    }
   };
 
   const handleDownvote = async () => {
-    setVoteChange(-1);
-    setVoted(1);
-    await sendVote(articleobj.article_id, -1);
+    try {
+      setVoteChange(-1);
+      setVoted("down");
+      const result = await sendVote(articleobj.article_id, -1);
+    } catch (err) {
+      resetVote();
+    }
   };
 
-  const resetVote = () => {
-    setVoted(0);
+  const resetVote = async () => {
+    const num = -voteChange;
+    setVoted(null);
     setVoteChange(0);
+    const result = await sendVote(articleobj.article_id, num);
+    console.log(result);
   };
 
   return (
     <div className="card">
-      <div className="card-header">
-        <img className="author-avatar" src={authorImg} alt="author" />
-        <div className="card-header-text">
-          <span className="article-author">{articleobj.author}</span>
-          <span className="article-date">
-            posted {date} at {time}{" "}
-          </span>
+      <Link to={`/articles/${articleobj.article_id}`}>
+        {" "}
+        <div className="card-header">
+          <img className="author-avatar" src={authorImg} alt="author" />
+          <div className="card-header-text">
+            <span className="article-author">{articleobj.author}</span>
+            <span className="article-date">
+              posted {date} at {time}{" "}
+            </span>
+          </div>
         </div>
-      </div>
+      </Link>
 
       <div className="image-wrapper">
         <Link to={`/articles/${articleobj.article_id}`}>
@@ -82,7 +94,10 @@ function Article({ articleobj, openPopup, closePopup }) {
         </Link>
         <div className="image-overlay">
           <h3 className="topic">in @{articleobj.topic}</h3>
-          <h1 className="article-title">{articleobj.title}</h1>
+          <Link to={`/articles/${articleobj.article_id}`}>
+            <h1 className="article-title">{articleobj.title}</h1>
+          </Link>
+
           <div className="button-row">
             <span
               className="comment-wrapper"
@@ -106,14 +121,18 @@ function Article({ articleobj, openPopup, closePopup }) {
             <span className="vote-wrapper">
               <div className="vote-text">{articleobj.votes + voteChange}</div>
               <button
-                onClick={() => (voted === 0 ? handleUpvote() : resetVote())}
-                className="overlay-btn"
+                onClick={() => (voted === null ? handleUpvote() : resetVote())}
+                className={voted === "up" ? "btn-active" : "overlay-btn"}
+                disabled={voted === "down"}
               >
                 <img src={upvoteIcon} alt="" />
               </button>
               <button
-                onClick={() => (voted === 0 ? handleDownvote() : resetVote())}
-                className="overlay-btn"
+                onClick={() =>
+                  voted === null ? handleDownvote() : resetVote()
+                }
+                className={voted === "down" ? "btn-active" : "overlay-btn"}
+                disabled={voted === "up"}
               >
                 <img src={downvoteIcon} alt="" />
               </button>

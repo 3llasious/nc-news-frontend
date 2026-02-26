@@ -50,6 +50,14 @@ export const fetchComments = async (article_id) => {
 
 export const sendVote = async (articleId, num) => {
   const url = `https://nc-backend-solosprint.onrender.com/api/articles/${articleId}`;
-  const { article } = await axios.patch(url, { inc_votes: num });
-  return article;
+  const { data } = await axios.patch(url, { inc_votes: num });
+  //axios wraps the response in a data object,
+  //my object is stored on akey called article
+  return data.article;
+};
+
+export const fetchAllComments = async () => {
+  const url = `https://nc-backend-solosprint.onrender.com/api/comments`;
+  const comments = (await fetch(url)).json();
+  return comments;
 };

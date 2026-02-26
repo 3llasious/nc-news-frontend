@@ -3,6 +3,7 @@ import {
   fetchComments,
   fetchAllUsers,
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
+
 import { Link } from "react-router-dom";
 import commentIcon from "../assets/comments.svg";
 import upvoteIcon from "../assets/up-vote.svg";
@@ -39,9 +40,10 @@ function CommentCard({ articleId, alignRight }) {
 
     fetchArticleComments();
   }, [articleId]);
+
   if (alignRight) {
     return (
-      <>
+      <div className="comments-list">
         {comments.map((comment) => {
           return (
             <div key={comment.comment_id}>
@@ -87,11 +89,11 @@ function CommentCard({ articleId, alignRight }) {
             </div>
           );
         })}
-      </>
+      </div>
     );
   }
   return (
-    <>
+    <div>
       {comments.map((comment) => {
         return (
           <div key={comment.comment_id}>
@@ -132,7 +134,7 @@ function CommentCard({ articleId, alignRight }) {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 

@@ -598,3 +598,15 @@ nav {
 .article-list {
   margin-bottom: 150px;
 }
+
+.comments-page-container {
+  margin-top: 80px;
+  padding: 0 16px;
+}
+
+mark {
+  background-color: yellow;
+  color: black;
+  border-radius: 3px;
+  padding: 0 2px;
+}

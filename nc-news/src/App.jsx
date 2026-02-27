@@ -7,6 +7,7 @@ import Thread from "./components/TopicPage";
 import Threads from "./components/CommentsLi";
 import SearchPage from "./components/SearchPage";
 import LoginPage from "./components/LoginPage";
+import LogoutPage from "./components/LogOut";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginProvider } from "./context/LoginContext";
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<ArticlesList />} />
           {/* essentially a feed */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
           <Route path="/articles/:article_id" element={<ArticlePage />} />
           <Route path="/topics/:topic" element={<Thread />} />
           <Route path="/search" element={<SearchPage />} />

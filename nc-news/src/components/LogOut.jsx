@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 
-function LoginPage() {
+function LogoutPage() {
   const { loggedInUser, setLoggedInUser } = useContext(LoginContext);
 
   return (
     <div id="login-info">
-      <p>Login</p>
+      <p>Logged in as: {loggedInUser.username}</p>
     </div>
   );
 }
 
-export default LoginPage;
+export default LogoutPage;

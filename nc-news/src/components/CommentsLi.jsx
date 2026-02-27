@@ -29,6 +29,7 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
       // error.response.data — the response body
       // error.response.data.msg — specific message (assuming you send back { msg: "..." })
       console.log(err.response.data.msg);
+      setPost("");
       setStatus(err.response.data.msg);
     }
   };

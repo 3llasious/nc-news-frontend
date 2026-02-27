@@ -59,7 +59,9 @@ function Header() {
       <h2 className="header-title">The Digest</h2>
       <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
         <Link to="/login">
-          <button>login</button>
+          <button className="delete-btn" style={{ borderRadius: "40px" }}>
+            login
+          </button>
         </Link>
         <button
           type="button"

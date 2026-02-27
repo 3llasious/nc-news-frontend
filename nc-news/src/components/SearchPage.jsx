@@ -1,10 +1,13 @@
 import SearchBar from "./searchBar";
 import search from "../assets/search.svg";
-import { fetchAllComments } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
+import {
+  fetchAllComments,
+  fetchThisArticle,
+} from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 import { useEffect, useState } from "react";
 import LoadingState from "./LoadingState";
 import { Link } from "react-router-dom";
-import commentIcon from "../assets/comments.svg";
+import thread from "../assets/thread.svg";
 import upvoteIcon from "../assets/up-vote.svg";
 import downvoteIcon from "../assets/down-vote.svg";
 import { filterComments } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/utils";
@@ -12,13 +15,26 @@ import { filterComments } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-n
 function SearchPage() {
   const [commentsArr, setCommentsArr] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [articleTitles, setArticleTitles] = useState({});
 
   useEffect(() => {
-    const getComments = async () => {
+    const getCommentsAndTitles = async () => {
       const { comments } = await fetchAllComments();
-      setCommentsArr(comments);
+      setCommentsArr(comments); // set comments as normal
+
+      // now `comments` directly
+      const titles = {};
+      for (const comment of comments) {
+        if (!titles[comment.article_id]) {
+          const { article } = await fetchThisArticle(comment.article_id);
+          titles[comment.article_id] = article.title;
+          //making look up obj
+        }
+      }
+      setArticleTitles(titles);
     };
-    getComments();
+
+    getCommentsAndTitles();
   }, []);
 
   const highlightMatch = (text, searchTerm) => {
@@ -41,6 +57,7 @@ function SearchPage() {
   ) : (
     <div className="comments-page-container">
       <div
+        className="search-wrapper"
         style={{ display: "flex", alignItems: "center", marginBottom: "40px" }}
       >
         <SearchBar setSearchTerm={setSearchTerm} />
@@ -54,7 +71,12 @@ function SearchPage() {
             <div style={{ marginBottom: "80px" }} key={comment.comment_id}>
               <div className="comment-header">
                 {/* <img className="user-pic" src={comment.avatarImg} alt="" /> */}
-                <span className="article-author">@{comment.author}</span>
+                <span className="article-author">
+                  @{comment.author} posted in
+                </span>
+                <span className="article-author">
+                  : {articleTitles[comment.article_id]}
+                </span>
               </div>
 
               <div className="comments-divider">
@@ -63,11 +85,11 @@ function SearchPage() {
               <div className="comments-prompt">
                 <Link to={`/articles/${comment.article_id}`}>
                   <button className="comment-wrapper">
-                    <img src={commentIcon} alt="" />
+                    <img src={thread} alt="" />
                   </button>
                 </Link>
 
-                <p>go to this conversation</p>
+                <p style={{ maxWidth: "50px" }}>go to thread</p>
                 <span className="vote-wrapper">
                   <div className="vote-text">{comment.votes}</div>
                   <button className="overlay-btn">

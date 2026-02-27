@@ -9,9 +9,14 @@ import commentIcon from "../assets/comments.svg";
 import upvoteIcon from "../assets/up-vote.svg";
 import downvoteIcon from "../assets/down-vote.svg";
 
-function CommentCard({ articleId, alignRight }) {
-  const [comments, setComments] = useState([]);
-
+function CommentCard({
+  articleId,
+  alignRight,
+  comments,
+  setComments,
+  thisUser,
+}) {
+  console.log(comments);
   useEffect(() => {
     async function fetchArticleComments() {
       try {
@@ -74,16 +79,28 @@ function CommentCard({ articleId, alignRight }) {
                     <img src={commentIcon} alt="" />
                   </button>
                 </Link>
-
                 <p>share your thoughts</p>
+
                 <span className="vote-wrapper">
                   <div className="vote-text">{comment.votes}</div>
-                  <button className="overlay-btn">
+                  <button
+                    className={
+                      thisUser === comment.author ? "icon-flat" : "overlay-btn"
+                    }
+                  >
                     <img src={upvoteIcon} alt="" />
                   </button>
-                  <button className="overlay-btn">
+                  <button
+                    className="overlay-btn"
+                    style={{
+                      display: thisUser === comment.author ? "none" : "flex",
+                    }}
+                  >
                     <img src={downvoteIcon} alt="" />
                   </button>
+                  {thisUser === comment.author ? (
+                    <button className="delete-btn">delete?</button>
+                  ) : null}
                 </span>
               </div>
             </div>

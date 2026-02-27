@@ -45,7 +45,7 @@ body {
 /* ─── Search */
 .search-wrapper {
   position: sticky;
-  top: 80px; /* sits just below your header */
+  top: 110px; /* sits just below your header */
   background-color: white; /* so content doesn't show through when scrolling */
   z-index: 10;
   padding: 12px 0;
@@ -120,8 +120,8 @@ nav {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  margin-top: 80px;
-  margin-bottom: 50px;
+  margin-top: 100px;
+  margin-bottom: 40px;
 }
 
 .sort-btn {
@@ -416,7 +416,9 @@ nav {
 .topic .see-text {
   display: block;
   font-size: 0.8rem;
+
   margin-bottom: 0px;
+  margin-top: 100px;
   color: #1c1c1c;
 }
 
@@ -574,6 +576,34 @@ nav {
   gap: 8px;
   margin-bottom: 1rem;
 }
+.delete-btn {
+  background-color: #d4d1d1;
+  color: #6b6969;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-flat {
+  background-color: #f0f0f1;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 .send-btn:hover {
   animation: btn-pulse 0.8s ease-in-out infinite;
@@ -672,7 +702,7 @@ nav {
 }
 
 mark {
-  background-color: yellow;
+  background-color: #ff383c;
   color: black;
   border-radius: 3px;
   padding: 0 2px;

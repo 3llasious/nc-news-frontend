@@ -14,6 +14,7 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
   const [clicked, setClicked] = useState(0);
   const [post, setPost] = useState("");
   const [status, setStatus] = useState(null);
+  const [comments, setComments] = useState([]);
 
   const postHandler = async () => {
     try {
@@ -21,6 +22,11 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
       const body = post;
       const postedComment = await sendComment(articleId, user, body);
       console.log(postedComment);
+
+      setComments((comments) => {
+        return [{ ...postedComment, avatarImg: avatar_url }, ...comments];
+      });
+
       setPost("");
       setStatus("sucess!");
     } catch (err) {
@@ -63,7 +69,11 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
           <h2>{articleName}</h2>
         </div>
 
-        <CommentCard articleId={articleId} />
+        <CommentCard
+          articleId={articleId}
+          comments={comments}
+          setComments={setComments}
+        />
       </div>
     );
   } else if (isOpen === undefined) {
@@ -94,7 +104,7 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
               placeholder={status ? status : "spark a discussion..."}
               value={post}
               onChange={(e) => {
-                setPost(e.target.value); //sets input
+                setPost(e.target.value); //sets post value which is stored in body
               }}
             />
             <button
@@ -111,7 +121,13 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
           </form>
         ) : null}
 
-        <CommentCard articleId={articleId} alignRight />
+        <CommentCard
+          articleId={articleId}
+          alignRight
+          comments={comments}
+          setComments={setComments}
+          thisUser={loggedInUser.username}
+        />
       </div>
     );
   }

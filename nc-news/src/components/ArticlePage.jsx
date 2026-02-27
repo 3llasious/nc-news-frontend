@@ -79,7 +79,7 @@ function ArticlePage() {
   ) : (
     <div>
       <div className="topic">
-        <span className="see-text">Discover more</span>
+        <span className="see-text">Discover threads</span>
         <Link to={`/topics/${articlePage.topic}`}>
           <h2>
             {articlePage.topic &&

@@ -10,34 +10,47 @@ function Header() {
     return (
       <div className="headings">
         <h2 className="header-title">The Digest</h2>
-        <Link to="/logout" style={{ marginLeft: "auto", marginRight: "20px" }}>
-          <button>log out?</button>
-        </Link>
-        <div className="comment-header-right">
-          <button
-            type="button"
+
+        <div
+          style={{
+            marginLeft: "auto",
+            marginRight: "20px",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <div
             style={{
-              padding: 0,
-              background: "none",
-              border: "none",
-              borderRadius: "50%",
-              overflow: "hidden",
+              padding: "0px",
+              margin: "0px",
+              fontSize: "1rem",
+              display: "flex",
+              fontWeight: "700",
+              flexDirection: "column",
+              alignItems: "end",
             }}
+            className="article-date"
           >
+            <span
+              className="font"
+              style={{ color: "black", fontSize: "1.5rem" }}
+            >
+              Welcome back,
+            </span>
+            @{username}
+          </div>
+        </div>
+        <Link to="/logout">
+          <div className="comment-header-right">
             <img
               className="author-avatar"
               src={avatar_url}
               alt=""
               style={{ padding: "0px", margin: "8px" }}
             />
-          </button>
-          <div
-            style={{ padding: "0px", margin: "0px", fontSize: "1rem" }}
-            className="article-date"
-          >
-            @{username}
           </div>
-        </div>
+        </Link>
       </div>
     );
   }

@@ -94,49 +94,53 @@ function Article({ articleobj, openPopup, closePopup }) {
         </Link>
         <div className="image-overlay">
           <h3 className="topic">in @{articleobj.topic}</h3>
-          <Link to={`/articles/${articleobj.article_id}`}>
-            <h1 className="article-title">{articleobj.title}</h1>
-          </Link>
-
-          <div className="button-row">
-            <span
-              className="comment-wrapper"
-              onClick={() => {
-                if (commentClicked === 0) {
-                  setCommentClicked(1);
-                  setOpen(true);
-                  openPopup();
-                } else {
-                  setCommentClicked(0);
-                  setOpen(false);
-                  closePopup();
-                }
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="vote-text">{articleobj.comment_count}</div>
-              <img src={commentsIcon} alt="" />
-            </span>
-
-            <span className="vote-wrapper">
-              <div className="vote-text">{articleobj.votes + voteChange}</div>
-              <button
-                onClick={() => (voted === null ? handleUpvote() : resetVote())}
-                className={voted === "up" ? "btn-active" : "overlay-btn"}
-                disabled={voted === "down"}
+          <div className="overlay-bottom">
+            {" "}
+            <Link to={`/articles/${articleobj.article_id}`}>
+              <h1 className="article-title">{articleobj.title}</h1>
+            </Link>
+            <div className="button-row">
+              <span
+                className="comment-wrapper"
+                onClick={() => {
+                  if (commentClicked === 0) {
+                    setCommentClicked(1);
+                    setOpen(true);
+                    openPopup();
+                  } else {
+                    setCommentClicked(0);
+                    setOpen(false);
+                    closePopup();
+                  }
+                }}
+                style={{ cursor: "pointer" }}
               >
-                <img src={upvoteIcon} alt="" />
-              </button>
-              <button
-                onClick={() =>
-                  voted === null ? handleDownvote() : resetVote()
-                }
-                className={voted === "down" ? "btn-active" : "overlay-btn"}
-                disabled={voted === "up"}
-              >
-                <img src={downvoteIcon} alt="" />
-              </button>
-            </span>
+                <div className="vote-text">{articleobj.comment_count}</div>
+                <img src={commentsIcon} alt="" />
+              </span>
+
+              <span className="vote-wrapper">
+                <div className="vote-text">{articleobj.votes + voteChange}</div>
+                <button
+                  onClick={() =>
+                    voted === null ? handleUpvote() : resetVote()
+                  }
+                  className={voted === "up" ? "btn-active" : "overlay-btn"}
+                  disabled={voted === "down"}
+                >
+                  <img src={upvoteIcon} alt="" />
+                </button>
+                <button
+                  onClick={() =>
+                    voted === null ? handleDownvote() : resetVote()
+                  }
+                  className={voted === "down" ? "btn-active" : "overlay-btn"}
+                  disabled={voted === "up"}
+                >
+                  <img src={downvoteIcon} alt="" />
+                </button>
+              </span>
+            </div>
           </div>
         </div>
       </div>

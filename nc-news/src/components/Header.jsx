@@ -34,7 +34,10 @@ function Header() {
           >
             <span
               className="font"
-              style={{ color: "black", fontSize: "1.5rem" }}
+              style={{
+                color: "black",
+                fontSize: "clamp(1rem, 3vw, 1.5rem)",
+              }}
             >
               Welcome back,
             </span>

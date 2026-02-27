@@ -1,4 +1,8 @@
-/* Force light mode — browser will never apply dark mode overrides */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 :root {
   color-scheme: light only;
 }
@@ -8,7 +12,19 @@
   margin: 0 auto;
   padding: 2rem;
 }
+html,
+body {
+  overflow-x: hidden;
+  background-color: #ffffff;
+}
 
+@media (max-width: 768px) {
+  #root {
+    max-width: 100%;
+    padding: 0.5rem;
+    overflow-x: hidden;
+  }
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -149,7 +165,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid #c0dce8;
+
   padding-bottom: 10px;
   background: #ffffff;
 }
@@ -211,16 +227,20 @@ nav {
 /* ─── Article Text */
 .article-title {
   font-weight: 600;
-  text-align: left;
   color: #ffffff;
-  display: block;
-  margin-bottom: 8rem;
   font-size: clamp(1rem, 5.5vw, 2.5rem);
   font-family: "Playfair Display", serif;
-  word-wrap: break-word;
+
   border-left: 4px solid #ff383c;
-  border-radius: 4px;
   padding-left: 10px;
+
+  max-width: 90%;
+  line-height: 1.1;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .article-author {
@@ -267,27 +287,46 @@ nav {
 /* ─── Image Wrapper  */
 .image-wrapper {
   position: relative;
-  display: block;
+  width: 100%;
   overflow: hidden;
+  border-radius: 28px 28px 0 0; /* optional, match card top corners */
+
+  aspect-ratio: 16/9;
+}
+
+@media (max-width: 768px) {
+  .image-wrapper {
+    min-height: 300px;
+  }
 }
 /* ─── Gradient  */
 .image-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   border-radius: 0 0 12px 12px;
+  position: absolute;
+  inset: 0;
+  padding: clamp(12px, 4vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .image-overlay .topic {
   color: #ffffff;
 }
 
+.overlay-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .article-image {
-  display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills container, cropping if necessary */
+  display: block;
 }
 
 /* ─── Overlay Buttons */
@@ -343,12 +382,10 @@ nav {
 }
 
 .button-row {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: fit-content;
 }
 
 /* ─── Nav Buttons  */
@@ -413,6 +450,13 @@ nav {
   margin-bottom: 40px;
   margin-top: 20px;
   color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .topic {
+    margin-bottom: 12px;
+    margin-top: 8px;
+  }
 }
 
 .topic .see-text {

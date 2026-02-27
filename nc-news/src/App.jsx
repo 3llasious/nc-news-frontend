@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ArticlesList from "./components/ArticlesList";
 import Header from "./components/Header";
@@ -8,10 +7,12 @@ import Thread from "./components/TopicPage";
 import Threads from "./components/CommentsLi";
 import SearchPage from "./components/SearchPage";
 import LoginPage from "./components/LoginPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LoginProvider } from "./context/LoginContext";
 
 function App() {
   return (
-    <BrowserRouter>
+    <LoginProvider>
       <div>
         <Header />
         <Nav />
@@ -27,7 +28,7 @@ function App() {
           {/* articles for a particular topic  */}
         </Routes>
       </div>
-    </BrowserRouter>
+    </LoginProvider>
   );
 }
 

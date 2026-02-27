@@ -1,5 +1,14 @@
+import { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
+
 function LoginPage() {
-  return <div>just checking</div>;
+  const { loggedInUser, setLoggedInUser } = useContext(LoginContext);
+
+  return (
+    <div id="login-info">
+      <p>Logged in as: {loggedInUser.username}</p>
+    </div>
+  );
 }
 
 export default LoginPage;

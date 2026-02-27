@@ -235,6 +235,8 @@ nav {
 
 .font {
   font-family: "Playfair Display", serif;
+  padding: 0;
+  margin: 0;
 }
 
 /* ─── Avatars  */
@@ -550,10 +552,37 @@ nav {
   align-items: center;
   gap: 8px;
   margin-bottom: 1rem;
+  animation: btn-pulse 0.8s ease-in-out infinite;
 }
 
 .write-btn:hover {
   animation: btn-pulse 0.8s ease-in-out infinite;
+}
+
+.send-btn {
+  background-color: #ff383c;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.send-btn:hover {
+  animation: btn-pulse 0.8s ease-in-out infinite;
+}
+
+.send-btn img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
 }
 
 @keyframes btn-pulse {
@@ -561,7 +590,7 @@ nav {
     box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
   }
   50% {
-    box-shadow: 0 4px 24px rgba(255, 56, 60, 0.8);
+    box-shadow: 0 4px 30px rgba(255, 56, 60, 0.8);
   }
   100% {
     box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
@@ -590,6 +619,8 @@ nav {
 /* ─── Discussion Input */
 .discussion-form {
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .discussion-input {

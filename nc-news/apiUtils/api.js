@@ -56,6 +56,12 @@ export const sendVote = async (articleId, num) => {
   return data.article;
 };
 
+export const sendComment = async (articleId, username, body) => {
+  const url = `https://nc-backend-solosprint.onrender.com/api/articles/${articleId}/comments`;
+  const { data } = await axios.post(url, { author: username, body });
+  return data.comment;
+};
+
 export const fetchAllComments = async () => {
   const url = `https://nc-backend-solosprint.onrender.com/api/comments`;
   const comments = (await fetch(url)).json();

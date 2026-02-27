@@ -22,7 +22,7 @@ function ArticlePage() {
   useEffect(() => {
     const getThisArticle = async () => {
       const result = await fetchThisArticle(article_id);
-      console.log(result);
+
       const { article } = result;
       setArticlePage(article);
     };
@@ -92,7 +92,7 @@ function ArticlePage() {
       <div className="card-header">
         <img className="author-avatar" src={authorImg} alt="" />
         <div>
-          <h3>{articlePage.title}</h3>
+          <h2 className="font">{articlePage.title}</h2>
           <h4>by {articlePage.author}</h4>
           <span className="article-date">
             posted at {date},{time}

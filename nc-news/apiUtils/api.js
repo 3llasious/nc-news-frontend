@@ -14,7 +14,7 @@ export const fetchAllArticlesquery = async (sortColumn, orderby) => {
 
 export const fetchAllTopicsquery = async (topic) => {
   const url = `https://nc-backend-solosprint.onrender.com/api/articles?topic=${topic}`;
-  const articles = (await fetch(url)).json();
+  const articles = await (await fetch(url)).json();
   return articles;
 };
 

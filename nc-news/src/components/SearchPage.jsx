@@ -3,8 +3,9 @@ import search from "../assets/search.svg";
 import {
   fetchAllComments,
   fetchThisArticle,
+  fetchAllTopics,
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import LoadingState from "./LoadingState";
 import { Link } from "react-router-dom";
 import thread from "../assets/thread.svg";
@@ -15,6 +16,7 @@ import { filterComments } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-n
 function SearchPage() {
   const [commentsArr, setCommentsArr] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [topicsArr, setTopicsArr] = useState([]);
   const [articleTitles, setArticleTitles] = useState({});
 
   useEffect(() => {
@@ -35,6 +37,7 @@ function SearchPage() {
     };
 
     getCommentsAndTitles();
+    handleTopics();
   }, []);
 
   const highlightMatch = (text, searchTerm) => {
@@ -50,12 +53,34 @@ function SearchPage() {
     });
   };
 
+  const handleTopics = async () => {
+    const { topics } = await fetchAllTopics();
+    setTopicsArr(topics);
+  };
+
   const filteredComments = filterComments(commentsArr)(searchTerm);
 
   return commentsArr.length === 0 ? (
     <LoadingState isLoading />
   ) : (
     <div className="comments-page-container">
+      <div className="action-row" style={{ marginBottom: "20px", gap: "25px" }}>
+        {topicsArr
+          ? topicsArr.map((topic) => {
+              return (
+                <Link to={`/topics/${topic.slug}`}>
+                  {" "}
+                  <button
+                    className="delete-btn"
+                    style={{ marginTop: "30px", borderRadius: "20px" }}
+                  >
+                    @{topic.slug}
+                  </button>
+                </Link>
+              );
+            })
+          : null}
+      </div>
       <div
         className="search-wrapper"
         style={{ display: "flex", alignItems: "center", marginBottom: "40px" }}

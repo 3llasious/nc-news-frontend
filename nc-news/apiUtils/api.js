@@ -67,3 +67,9 @@ export const fetchAllComments = async () => {
   const comments = (await fetch(url)).json();
   return comments;
 };
+
+export const deleteThisComment = async (id) => {
+  const url = `https://nc-backend-solosprint.onrender.com/api/comments/${id}`;
+  const { data } = await axios.delete(url);
+  return "deleted";
+};

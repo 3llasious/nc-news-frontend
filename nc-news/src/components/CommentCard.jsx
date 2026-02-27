@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   fetchComments,
   fetchAllUsers,
+  deleteThisComment,
 } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
 
 import { Link } from "react-router-dom";
@@ -16,6 +17,7 @@ function CommentCard({
   setComments,
   thisUser,
 }) {
+  const [deletedIds, setDeletedIds] = useState([]);
   console.log(comments);
   useEffect(() => {
     async function fetchArticleComments() {
@@ -46,6 +48,11 @@ function CommentCard({
     fetchArticleComments();
   }, [articleId]);
 
+  const deleteHandler = async (id) => {
+    await deleteThisComment(id);
+    setDeletedIds((deletedIds) => [...deletedIds, id]);
+  };
+
   if (alignRight) {
     return (
       <div className="comments-list">
@@ -67,12 +74,21 @@ function CommentCard({
                 <span className="article-author">@{comment.author}</span>
               </div>
 
-              <div
-                className="comments-divider"
-                style={{ maxWidth: alignRight ? "70%" : "100%" }}
-              >
-                {comment.body}
-              </div>
+              {!deletedIds.includes(comment.comment_id) ? (
+                <div
+                  className="comments-divider"
+                  style={{ maxWidth: alignRight ? "70%" : "100%" }}
+                >
+                  {comment.body}
+                </div>
+              ) : (
+                <div
+                  className="article-date"
+                  style={{ fontSize: "1rem", color: "grey" }}
+                >
+                  user has deleted this comment
+                </div>
+              )}
               <div className="comments-prompt">
                 <Link to={`/articles/${articleId}`}>
                   <button className="comment-wrapper">
@@ -99,7 +115,14 @@ function CommentCard({
                     <img src={downvoteIcon} alt="" />
                   </button>
                   {thisUser === comment.author ? (
-                    <button className="delete-btn">delete?</button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => {
+                        deleteHandler(comment.comment_id);
+                      }}
+                    >
+                      delete?
+                    </button>
                   ) : null}
                 </span>
               </div>

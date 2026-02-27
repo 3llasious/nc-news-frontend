@@ -591,6 +591,12 @@ nav {
   gap: 8px;
 }
 
+.delete-btn:hover {
+  background-color: #ff383c;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
+}
+
 .icon-flat {
   background-color: #f0f0f1;
   border: none;

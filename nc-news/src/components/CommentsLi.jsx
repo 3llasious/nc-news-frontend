@@ -40,19 +40,23 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
   } else if (isOpen === undefined) {
     return (
       <div>
-        <button
-          className="write-btn"
-          type="button"
-          onClick={() => {
-            if (clicked === 0) {
-              formHandler();
-            } else {
-              closeFormHandler();
-            }
-          }}
-        >
-          <img src={conversation} alt="" />
-        </button>
+        <div className="comment-trigger-row">
+          <button
+            className="write-btn"
+            type="button"
+            onClick={() => {
+              if (clicked === 0) {
+                formHandler();
+              } else {
+                closeFormHandler();
+              }
+            }}
+          >
+            <img src={conversation} alt="" />
+          </button>
+          <div className="comment-trigger-text">add a comment...</div>
+        </div>
+
         {openForm ? (
           <form className="discussion-form" action="POST">
             <input

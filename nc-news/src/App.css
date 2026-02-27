@@ -37,12 +37,12 @@
   }
 }
 
-/* ─── Base ───────────────────────────────────────────────────────── */
+/* ─── Base */
 body {
   background-color: #ffffff;
   color: #111111;
 }
-/* ─── Search ────────────────────────────────────────────────────────── */
+/* ─── Search */
 .search-wrapper {
   position: sticky;
   top: 80px; /* sits just below your header */
@@ -77,7 +77,7 @@ body {
   box-shadow: 0 0 0 2px rgba(255, 56, 60, 0.15);
 }
 
-/* ─── Nav ────────────────────────────────────────────────────────── */
+/* ─── Nav */
 nav {
   position: fixed;
   bottom: 0;
@@ -92,7 +92,7 @@ nav {
   border-top: 1px solid #e8e8e8;
 }
 
-/* ─── Header ─────────────────────────────────────────────────────── */
+/* ─── Header */
 .headings {
   background-color: #f9f7ee;
   padding: 10px 16px;
@@ -115,7 +115,7 @@ nav {
   padding-left: 8px;
 }
 
-/* ─── Sort Buttons ───────────────────────────────────────────────── */
+/* ─── Sort Buttons  */
 .sort-btns {
   display: flex;
   flex-direction: row;
@@ -135,13 +135,14 @@ nav {
   font-size: 1rem;
 }
 
-/* ─── Card ───────────────────────────────────────────────────────── */
+/* ─── Card  */
 .card {
   background: #ffffff;
   border-radius: 28px;
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.12);
   overflow: hidden;
   margin-bottom: 1rem;
+  border: solid #d0cfcf 1.2px;
 }
 
 .card-header {
@@ -171,13 +172,13 @@ nav {
   align-items: start;
 }
 
-/* ─── Card Body ──────────────────────────────────────────────────── */
+/* ─── Card Body  */
 .card-body {
   padding: 1rem;
   background-color: #fff9c4;
 }
 
-/* ─── Comments Prompt ────────────────────────────────────────────── */
+/* ─── Comments Prompt  */
 .comments-prompt {
   display: flex;
   align-items: center;
@@ -201,8 +202,13 @@ nav {
 .comments-prompt .vote-wrapper {
   margin-left: auto;
 }
+/* ─── Inline Comment Trigger  */
 
-/* ─── Article Text ───────────────────────────────────────────────── */
+.comment-trigger-btn:hover {
+  animation: btn-pulse 0.8s ease-in-out infinite;
+}
+
+/* ─── Article Text */
 .article-title {
   font-weight: 600;
   text-align: left;
@@ -231,7 +237,7 @@ nav {
   font-family: "Playfair Display", serif;
 }
 
-/* ─── Avatars ────────────────────────────────────────────────────── */
+/* ─── Avatars  */
 .author-avatar {
   width: 48px;
   height: 48px;
@@ -254,13 +260,13 @@ nav {
   margin-top: 10px;
 }
 
-/* ─── Image Wrapper ──────────────────────────────────────────────── */
+/* ─── Image Wrapper  */
 .image-wrapper {
   position: relative;
   display: block;
   overflow: hidden;
 }
-
+/* ─── Gradient  */
 .image-overlay {
   position: absolute;
   bottom: 0;
@@ -280,7 +286,7 @@ nav {
   width: 100%;
 }
 
-/* ─── Overlay Buttons ────────────────────────────────────────────── */
+/* ─── Overlay Buttons */
 .overlay-btn {
   display: flex;
   align-items: center;
@@ -341,7 +347,7 @@ nav {
   gap: 0.5rem;
 }
 
-/* ─── Nav Buttons ────────────────────────────────────────────────── */
+/* ─── Nav Buttons  */
 .nav-btn {
   padding: 0.5rem 1.5rem;
   margin: 5px;
@@ -353,7 +359,7 @@ nav {
   font-size: 1rem;
 }
 
-/* ─── Vote / Comment Pills ───────────────────────────────────────── */
+/* ─── Vote / Comment Pills */
 .vote-text {
   font-size: 0.85rem;
   font-weight: 600;
@@ -396,7 +402,7 @@ nav {
   filter: brightness(0) invert(1);
 }
 
-/* ─── Topic ──────────────────────────────────────────────────────── */
+/* ─── Topic  */
 .topic {
   font-family: "DM Mono", monospace;
   text-align: left;
@@ -423,7 +429,7 @@ nav {
   color: #8b5cf6;
 }
 
-/* ─── Pop-up ─────────────────────────────────────────────────────── */
+/* ─── Pop-up  */
 .pop-up {
   position: fixed;
   top: 0;
@@ -457,7 +463,7 @@ nav {
   }
 }
 
-/* ─── Comments ───────────────────────────────────────────────────── */
+/* ─── Comments */
 .comments-divider {
   display: flex;
   align-items: start;
@@ -495,7 +501,7 @@ nav {
   margin-bottom: 150px;
 }
 
-/* ─── Loading ────────────────────────────────────────────────────── */
+/* ─── Loading */
 .loading-container {
   display: flex;
   justify-content: center;
@@ -523,7 +529,7 @@ nav {
   }
 }
 
-/* ─── Write Button ───────────────────────────────────────────────── */
+/* ─── Write Button */
 .action-row {
   display: flex;
   gap: 0.5rem;
@@ -535,7 +541,7 @@ nav {
   color: #ffffff;
   border: none;
   border-radius: 10px;
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -568,7 +574,20 @@ nav {
   filter: brightness(0) invert(1);
 }
 
-/* ─── Discussion Input ───────────────────────────────────────────── */
+.comment-trigger-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comment-trigger-text {
+  font-size: 0.85rem;
+  color: #666666;
+  max-width: 80px;
+  line-height: 1.3;
+}
+
+/* ─── Discussion Input */
 .discussion-form {
   margin-bottom: 1.5rem;
 }
@@ -590,7 +609,7 @@ nav {
   box-shadow: 0 0 0 2px rgba(255, 56, 60, 0.15);
 }
 
-/* ─── Close Button ───────────────────────────────────────────────── */
+/* ─── Close Button  */
 .close-btn {
   width: 32px;
   height: 32px;
@@ -611,7 +630,7 @@ nav {
   background: #ff383c;
 }
 
-/* ─── Article List ───────────────────────────────────────────────── */
+/* ─── Article List  */
 .article-list {
   margin-bottom: 150px;
 }

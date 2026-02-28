@@ -433,7 +433,9 @@ nav {
   align-items: center;
   background: #f1f1f1;
   border-radius: 12px;
-  padding: 7px 10px;
+  padding: 4px 8px;
+  height: 44px;
+  gap: 4px;
 }
 
 .vote-wrapper button + button {
@@ -569,8 +571,10 @@ nav {
 }
 
 .comment-header-right {
-  flex-direction: row;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 8px;
   gap: 4px;
 }
 
@@ -664,18 +668,19 @@ nav {
   margin-bottom: 1rem;
 }
 .delete-btn {
-  background-color: #d4d1d1;
-  color: #6b6969;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 12px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border: none;
+  border-radius: 8px;
+  background-color: #d4d1d1;
+  color: #6b6969;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .delete-btn:hover {
@@ -684,18 +689,21 @@ nav {
   box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
 }
 
+.delete-btn:hover img {
+  filter: brightness(0) invert(1);
+}
+
 .icon-flat {
   background-color: #f0f0f1;
   border: none;
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 10px 6px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0px;
 }
 
 .send-btn:hover {

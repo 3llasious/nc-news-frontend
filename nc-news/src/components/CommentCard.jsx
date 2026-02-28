@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import commentIcon from "../assets/comments.svg";
 import upvoteIcon from "../assets/up-vote.svg";
 import downvoteIcon from "../assets/down-vote.svg";
+import deleteIcon from "../assets/close-circle.svg";
 
 function CommentCard({
   articleId,
@@ -121,7 +122,7 @@ function CommentCard({
                         deleteHandler(comment.comment_id);
                       }}
                     >
-                      delete?
+                      <img src={deleteIcon} alt="" />
                     </button>
                   ) : null}
                 </span>
@@ -133,7 +134,7 @@ function CommentCard({
     );
   }
   return (
-    <div>
+    <div className="comments-list">
       {comments.map((comment) => {
         return (
           <div key={comment.comment_id}>
@@ -147,12 +148,7 @@ function CommentCard({
               <span className="article-author">@{comment.author}</span>
             </div>
 
-            <div
-              className="comments-divider"
-              style={{ maxWidth: alignRight ? "70%" : "100%" }}
-            >
-              {comment.body}
-            </div>
+            <div className="comments-divider">{comment.body}</div>
             <div className="comments-prompt">
               <Link to={`/articles/${articleId}`}>
                 <button className="comment-wrapper">

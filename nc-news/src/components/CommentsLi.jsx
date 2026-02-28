@@ -78,7 +78,7 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
     );
   } else if (isOpen === undefined) {
     return (
-      <div>
+      <div className="threads-container">
         <div className="comment-trigger-row">
           <button
             className={clicked === 0 ? "write-btn" : "send-btn"}

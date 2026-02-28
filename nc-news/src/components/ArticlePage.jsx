@@ -77,7 +77,7 @@ function ArticlePage() {
   return !articlePage.topic ? (
     <LoadingState isLoading />
   ) : (
-    <div>
+    <div className="page-wrapper">
       <div className="topic">
         <span className="see-text">Discover threads</span>
         <Link to={`/topics/${articlePage.topic}`}>
@@ -89,18 +89,18 @@ function ArticlePage() {
           </h2>
         </Link>
       </div>
+      <h2 className="font article-page-title">{articlePage.title}</h2>
       <div className="card-header">
         <img className="author-avatar" src={authorImg} alt="" />
         <div>
-          <h2 className="font">{articlePage.title}</h2>
           <h4>by {articlePage.author}</h4>
           <span className="article-date">
-            posted at {date},{time}
+            posted at {time}, {date}
           </span>
         </div>
       </div>
 
-      <p style={{ marginBottom: "1.7rem" }}>{articlePage.body}</p>
+      <p className="article-body">{articlePage.body}</p>
       <div style={{ marginBottom: "5rem" }} className="action-row">
         <span className="vote-wrapper">
           <div className="vote-text">{articlePage.votes + voteChange}</div>

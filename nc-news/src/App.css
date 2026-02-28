@@ -5,7 +5,7 @@
 }
 :root {
   color-scheme: light only;
-  --side-padding: 27px;
+  --side-padding: 20px;
 }
 
 #root {
@@ -125,7 +125,7 @@ nav {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  margin-top: 100px;
+  margin-top: 0px;
   margin-bottom: 40px;
 }
 
@@ -795,8 +795,14 @@ nav {
 /* ─── Article List  */
 .article-list {
   margin-bottom: 150px;
+  padding-top: 100px;
 }
 
+@media (max-width: 480px) {
+  .article-list {
+    padding-top: 120px;
+  }
+}
 .comments-page-container {
   margin-top: 80px;
   padding: 0 var(--side-padding);

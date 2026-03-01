@@ -83,7 +83,7 @@ nav {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0rem;
   z-index: 100;
   background: #ffffff;
   border-top: 1px solid #e8e8e8;
@@ -117,7 +117,8 @@ nav {
   color: #ff383c;
   font-family: "Jomhuria", serif;
   margin: 0;
-  padding-left: var(--side-padding);
+  line-height: 1.2;
+  padding-left: 5pt;
 }
 
 /* ─── Sort Buttons  */
@@ -125,19 +126,28 @@ nav {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  margin-top: 0px;
+  margin-top: 100px;
   margin-bottom: 40px;
 }
 
 .sort-btn {
   padding: 0.5rem 1.5rem;
   margin: 5px;
-  border-radius: 20px;
-  border: 1px solid #dddddd;
-  cursor: pointer;
-  background: #ffffff;
   color: #111111;
   font-size: 1rem;
+  border-radius: 8px;
+  background-color: #d4d1d1;
+  color: #6b6969;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sort-btn:hover {
+  background-color: #ff383c;
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
 }
 
 /* ─── Card  */
@@ -261,7 +271,7 @@ nav {
   flex-shrink: 0;
   border: solid #ff383c 2px;
   background-color: rgb(235, 233, 233);
-  object-fit: cover; /* add this — stops it stretching */
+  object-fit: cover;
   margin: 0;
 }
 
@@ -281,8 +291,7 @@ nav {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 28px 28px 0 0; /* optional, match card top corners */
-
+  border-radius: 28px 28px 0 0;
   aspect-ratio: 16/9;
 }
 
@@ -317,7 +326,7 @@ nav {
 .article-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fills container, cropping if necessary */
+  object-fit: cover;
   display: block;
 }
 
@@ -449,6 +458,7 @@ nav {
   border-radius: 12px;
   padding: 7px 20px;
   gap: 20px;
+  border: none;
   cursor: pointer;
 }
 
@@ -458,6 +468,7 @@ nav {
 }
 
 .comment-wrapper:hover {
+  border: none;
   background: #ff383c;
 }
 
@@ -606,10 +617,10 @@ nav {
 }
 
 .loading-title {
-  font-size: 5rem;
+  font-size: 8rem;
   animation: pulse 0.7s ease-in-out infinite;
-  font-family: "Playfair Display", serif;
   justify-content: center;
+  font-family: "Jomhuria", serif;
 }
 
 @keyframes pulse {
@@ -644,7 +655,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 1rem;
+
   animation: btn-pulse 0.8s ease-in-out infinite;
 }
 
@@ -689,6 +700,25 @@ nav {
   box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
 }
 
+.topic-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: none;
+  border-radius: "20px";
+  background-color: #d4d1d1;
+  color: #6b6969;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.topic-btn:hover {
+  background-color: #ff383c;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
+}
 .delete-btn:hover img {
   filter: brightness(0) invert(1);
 }
@@ -775,9 +805,8 @@ nav {
 .close-btn {
   width: 32px;
   height: 32px;
-  min-width: 32px;
-  min-height: 32px;
-  border-radius: 50%;
+
+  border-radius: o;
   border: none;
   background: #f1f1f1;
   cursor: pointer;
@@ -790,12 +819,13 @@ nav {
 
 .close-btn:hover {
   background: #ff383c;
+  color: #ffffff;
 }
 
 /* ─── Article List  */
 .article-list {
   margin-bottom: 150px;
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 @media (max-width: 480px) {
@@ -804,7 +834,7 @@ nav {
   }
 }
 .comments-page-container {
-  margin-top: 80px;
+  margin-top: 100px;
   padding: 0 var(--side-padding);
 }
 

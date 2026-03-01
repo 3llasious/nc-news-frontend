@@ -7,6 +7,7 @@ import {
 
 import { Link } from "react-router-dom";
 import commentIcon from "../assets/comments.svg";
+import discussionIcon from "../assets/thread.svg";
 import upvoteIcon from "../assets/up-vote.svg";
 import downvoteIcon from "../assets/down-vote.svg";
 import deleteIcon from "../assets/close-circle.svg";
@@ -85,9 +86,13 @@ function CommentCard({
               ) : (
                 <div
                   className="article-date"
-                  style={{ fontSize: "1rem", color: "grey" }}
+                  style={{
+                    fontSize: "0.9rem",
+                    color: "grey",
+                    marginBottom: "10px",
+                  }}
                 >
-                  user has deleted this comment
+                  user has deleted this comment.
                 </div>
               )}
               <div className="comments-prompt">
@@ -152,7 +157,7 @@ function CommentCard({
             <div className="comments-prompt">
               <Link to={`/articles/${articleId}`}>
                 <button className="comment-wrapper">
-                  <img src={commentIcon} alt="" />
+                  <img src={discussionIcon} alt="" />
                 </button>
               </Link>
 

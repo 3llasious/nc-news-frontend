@@ -69,9 +69,8 @@ function SearchPage() {
           ? topicsArr.map((topic) => {
               return (
                 <Link to={`/topics/${topic.slug}`}>
-                  {" "}
                   <button
-                    className="delete-btn"
+                    className="topic-btn"
                     style={{ marginTop: "30px", borderRadius: "20px" }}
                   >
                     @{topic.slug}

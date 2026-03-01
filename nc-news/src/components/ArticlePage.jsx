@@ -42,6 +42,8 @@ function ArticlePage() {
   const date = articlePage.created_at
     ? articlePage.created_at.slice(0, 10)
     : "";
+  const dateArranged =
+    date.slice(-2) + "-" + date.slice(5, 8) + date.slice(0, 4);
   const time = articlePage.created_at
     ? articlePage.created_at.slice(11, 16)
     : "";
@@ -95,7 +97,7 @@ function ArticlePage() {
         <div>
           <h4>by {articlePage.author}</h4>
           <span className="article-date">
-            posted at {time}, {date}
+            posted at {time}, {dateArranged}
           </span>
         </div>
       </div>

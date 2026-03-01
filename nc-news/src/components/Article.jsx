@@ -33,6 +33,8 @@ function Article({ articleobj, openPopup, closePopup }) {
   //change later when we add a single user id path or id queries to the backend
   const dateRaw = articleobj.created_at;
   const date = dateRaw.slice(0, 10);
+  const dateArranged =
+    date.slice(-2) + "-" + date.slice(5, 8) + date.slice(0, 4);
   const time = dateRaw.slice(11, 16);
 
   const handleClose = () => {
@@ -78,7 +80,7 @@ function Article({ articleobj, openPopup, closePopup }) {
           <div className="card-header-text">
             <span className="article-author">{articleobj.author}</span>
             <span className="article-date">
-              posted {date} at {time}{" "}
+              posted {time} on {dateArranged}
             </span>
           </div>
         </div>

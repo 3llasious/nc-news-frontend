@@ -42,6 +42,23 @@ export const fetchAllUsers = async () => {
   return users;
 };
 
+export const fetchThisUser = async (username) => {
+  const url = `https://nc-backend-solosprint.onrender.com/api/users/${username}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return data.user;
+};
+
+export const addThisUser = async (username, name, avatar_url) => {
+  const url = `https://nc-backend-solosprint.onrender.com/api/users`;
+  const { data } = await axios.post(url, {
+    username: username,
+    name: name,
+    avatar_url: avatar_url,
+  });
+  return data.user;
+};
+
 export const fetchComments = async (article_id) => {
   const url = `https://nc-backend-solosprint.onrender.com/api/articles/${article_id}/comments`;
   const comments = (await fetch(url)).json();

@@ -11,18 +11,6 @@ function Header() {
       <div className="headings">
         <h2 className="header-title">The Digest</h2>
         <div className="header-user">
-          <div
-            style={{
-              padding: "0px",
-              margin: "0px",
-              fontSize: "1rem",
-              fontWeight: "700",
-            }}
-            className="article-date"
-          >
-            @{username}
-          </div>
-
           <Link to="/logout">
             <img className="author-avatar" src={avatar_url} alt="" />
           </Link>
@@ -35,7 +23,7 @@ function Header() {
       <h2 className="header-title">The Digest</h2>
       <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
         <Link to="/login">
-          <button className="delete-btn" style={{ borderRadius: "40px" }}>
+          <button className="sort-btn" style={{ borderRadius: "40px" }}>
             login
           </button>
         </Link>

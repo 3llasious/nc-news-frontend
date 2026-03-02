@@ -124,6 +124,7 @@ function Article({ articleobj, openPopup, closePopup }) {
               <span className="vote-wrapper">
                 <div className="vote-text">{articleobj.votes + voteChange}</div>
                 <button
+                  key={`up-${voted}`}
                   onClick={(e) => {
                     voted === null ? handleUpvote() : resetVote();
                   }}
@@ -133,6 +134,7 @@ function Article({ articleobj, openPopup, closePopup }) {
                   <img src={upvoteIcon} alt="" />
                 </button>
                 <button
+                  key={`down-${voted}`}
                   onClick={(e) => {
                     voted === null ? handleDownvote() : resetVote();
                   }}

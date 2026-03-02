@@ -379,13 +379,15 @@ nav {
   box-shadow: none;
 }
 
-.overlay-btn:hover {
-  background: #ff383c;
-  border-radius: 8px;
-}
+@media (hover: hover) {
+  .overlay-btn:hover {
+    background: #ff383c;
+    border-radius: 8px;
+  }
 
-.overlay-btn:hover img {
-  filter: brightness(0) invert(1);
+  .overlay-btn:hover img {
+    filter: brightness(0) invert(1);
+  }
 }
 
 .overlay-btn:disabled {

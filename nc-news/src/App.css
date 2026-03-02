@@ -422,6 +422,8 @@ nav {
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: none;
   touch-action: manipulation;
+  will-change: contents;
+  transform: translateZ(0);
 }
 
 /* ─── Nav Buttons  */

@@ -22,16 +22,24 @@ function LoginPage() {
       avatar_url: img,
       name: name,
     });
+    //need to error handle no username or name received in back-end
+    //contingency handle no image given in front-end
   };
 
   const getThisUser = async () => {
     const result = await fetchThisUser(username2);
-    setSuccessMsg("you're in!");
-    setLoggedInUser({
-      username: result.username,
-      avatar_url: result.avatar_url,
-      name: result.name,
-    });
+
+    if (result) {
+      setSuccessMsg("you're in!");
+      setLoggedInUser({
+        username: result.username,
+        avatar_url: result.avatar_url,
+        name: result.name,
+      });
+    } else {
+      setSuccessMsg("oops wrong username try again");
+    }
+    //need to error handle username not found in Back end
   };
 
   if (successMsg === "") {

@@ -417,6 +417,13 @@ nav {
   width: fit-content;
 }
 
+.btn-active,
+.overlay-btn {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+}
+
 /* ─── Nav Buttons  */
 .nav-btn {
   padding: 0.5rem 1.5rem;

@@ -107,14 +107,18 @@ function ArticlePage() {
         <span className="vote-wrapper">
           <div className="vote-text">{articlePage.votes + voteChange}</div>
           <button
-            onClick={() => (voted === null ? handleUpvote() : resetVote())}
+            onClick={(e) => {
+              voted === null ? handleUpvote() : resetVote();
+            }}
             className={voted === "up" ? "btn-active" : "overlay-btn"}
             disabled={voted === "down"}
           >
             <img src={upvoteIcon} alt="" />
           </button>
           <button
-            onClick={() => (voted === null ? handleDownvote() : resetVote())}
+            onClick={(e) => {
+              voted === null ? handleDownvote() : resetVote();
+            }}
             className={voted === "down" ? "btn-active" : "overlay-btn"}
             disabled={voted === "up"}
           >

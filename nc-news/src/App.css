@@ -26,13 +26,6 @@ body {
     overflow-x: hidden;
   }
 }
-@media (max-width: 768px) {
-  #root {
-    max-width: 100%;
-    padding: 0 var(--side-padding);
-    overflow-x: hidden;
-  }
-}
 
 /* ─── Base */
 body {
@@ -417,15 +410,6 @@ nav {
   flex-direction: column;
   gap: 0.5rem;
   width: fit-content;
-}
-
-.btn-active,
-.overlay-btn {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
-  touch-action: manipulation;
-  will-change: contents;
-  transform: translateZ(0);
 }
 
 /* ─── Nav Buttons  */

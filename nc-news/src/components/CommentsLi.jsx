@@ -2,6 +2,7 @@ import CommentCard from "./CommentCard";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import conversation from "../assets/conversation.svg";
+import postIcon from "../assets/Post.svg";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 import { sendComment } from "/Users/emmanuellaitopa/Northcoders/frontend/nc-news-frontend/nc-news/apiUtils/api.js";
@@ -81,7 +82,7 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
       <div className="threads-container">
         <div className="comment-trigger-row">
           <button
-            className={clicked === 0 ? "write-btn" : "send-btn"}
+            className={clicked === 0 ? "write-btn" : "write-btn-still"}
             type="button"
             onClick={() => {
               if (clicked === 0) {
@@ -116,7 +117,7 @@ function Threads({ isOpen, closeComments, articleId, articleName }) {
                 postHandler();
               }}
             >
-              post
+              <img src={postIcon} alt="" />
             </button>
           </form>
         ) : null}

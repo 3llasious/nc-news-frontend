@@ -13,6 +13,8 @@ function ArticlesList() {
 
   const [commentsOpen, setCommentsOpen] = useState(false);
 
+  const [activeId, setActiveId] = useState(null);
+
   //will be a pulsating "welcome to the digest" title when loading
 
   useEffect(() => {
@@ -45,10 +47,24 @@ function ArticlesList() {
   ) : (
     <div className="article-list">
       <div className="sort-btns">
-        <button className="sort-btn" onClick={latestHandler}>
+        <button
+          key="latest"
+          className={`sort-button ${activeId === "latest" ? "sort-button-active" : ""}`}
+          onClick={(e) => {
+            setActiveId("latest");
+            latestHandler();
+          }}
+        >
           latest
         </button>
-        <button className="sort-btn" onClick={popularHandler}>
+        <button
+          key="popular"
+          className={`sort-button ${activeId === "popular" ? "sort-button-active" : ""}`}
+          onClick={(e) => {
+            setActiveId("popular");
+            popularHandler();
+          }}
+        >
           popular
         </button>
       </div>

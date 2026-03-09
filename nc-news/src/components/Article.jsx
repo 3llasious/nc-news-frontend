@@ -78,7 +78,7 @@ function Article({ articleobj, openPopup, closePopup }) {
         <div className="card-header">
           <img className="author-avatar" src={authorImg} alt="author" />
           <div className="card-header-text">
-            <span className="article-author">{articleobj.author}</span>
+            <span className="article-author">@{articleobj.author}</span>
             <span className="article-date">
               posted {time} on {dateArranged}
             </span>

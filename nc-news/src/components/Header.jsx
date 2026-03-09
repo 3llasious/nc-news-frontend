@@ -9,7 +9,7 @@ function Header() {
   if (username && avatar_url) {
     return (
       <div className="headings">
-        <h2 className="header-title">The Digest</h2>
+        <h2 className="header-title">The Digest.</h2>
         <div className="header-user">
           <Link to="/logout">
             <img className="author-avatar" src={avatar_url} alt="" />
@@ -20,7 +20,7 @@ function Header() {
   }
   return (
     <div className="headings">
-      <h2 className="header-title">The Digest</h2>
+      <h2 className="header-title">The Digest.</h2>
       <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
         <Link to="/login">
           <button className="sort-btn" style={{ borderRadius: "40px" }}>

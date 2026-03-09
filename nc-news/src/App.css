@@ -35,8 +35,8 @@ body {
 /* ─── Search */
 .search-wrapper {
   position: sticky;
-  top: 110px; /* sits just below your header */
-  background-color: white; /* so content doesn't show through when scrolling */
+  top: 110px;
+  background-color: white;
   z-index: 10;
   padding: 12px 0;
   display: flex;
@@ -106,9 +106,9 @@ nav {
 }
 
 .header-title {
-  font-size: 4rem;
-  color: #ff383c;
-  font-family: "Jomhuria", serif;
+  font-size: 2.7rem;
+  color: #e5072f;
+  font-family: "Libre Baskerville", serif;
   margin: 0;
   line-height: 1.2;
   padding-left: 5pt;
@@ -129,8 +129,8 @@ nav {
   color: #111111;
   font-size: 1rem;
   border-radius: 8px;
-  background-color: #d4d1d1;
-  color: #6b6969;
+  background-color: #d8d5cf;
+  color: #6e6e6e;
   font-size: 0.7rem;
   font-weight: 500;
   cursor: pointer;
@@ -143,14 +143,45 @@ nav {
   box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
 }
 
+.sort-button {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #6e6e6e;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 0;
+
+  cursor: pointer;
+}
+
+.sort-button-active {
+  background: none;
+  border: none;
+  border-bottom: 3px solid #ff383c;
+  padding: 2px 4px;
+  border-radius: 0;
+  outline: none;
+}
+
+.sort-button:focus,
+.sort-button:focus-visible {
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ─── Card  */
 .card {
   background: #ffffff;
   border-radius: 28px;
-  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.05);
   overflow: hidden;
   margin-bottom: 1rem;
-  border: solid #d0cfcf 1.2px;
+  border: solid #d0cfcf 0.5px;
 }
 
 .card-header {
@@ -170,7 +201,7 @@ nav {
 .card-header h4 {
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   color: #676767;
   margin: 0;
 }
@@ -225,7 +256,7 @@ nav {
   font-size: clamp(1rem, 5.5vw, 2.5rem);
   font-family: "Playfair Display", serif;
 
-  border-left: 4px solid #ff383c;
+  border-left: 4px solid #fe4a4d;
   padding-left: 10px;
 
   max-width: 90%;
@@ -280,7 +311,7 @@ nav {
   height: 48px;
   border-radius: 50%;
   flex-shrink: 0;
-  border: solid #ff383c 2px;
+  border: solid #ff383c 3px;
   background-color: rgb(235, 233, 233);
   object-fit: cover;
   margin: 0;
@@ -356,7 +387,7 @@ nav {
 
 @media (max-width: 768px) {
   .page-wrapper {
-    margin-top: 120px;
+    margin-top: 170px;
   }
 }
 
@@ -430,6 +461,7 @@ nav {
   width: fit-content;
 }
 
+/* #signin-info{} */
 /* ─── Nav Buttons  */
 .nav-btn {
   padding: 0.5rem 1.5rem;
@@ -527,7 +559,7 @@ nav {
 .topic h1 {
   margin: 0;
   display: block;
-  color: #8b5cf6;
+  color: #404053;
 }
 
 /* ─── Pop-up  */
@@ -633,7 +665,7 @@ nav {
   font-size: 8rem;
   animation: pulse 0.7s ease-in-out infinite;
   justify-content: center;
-  font-family: "Jomhuria", serif;
+  font-family: "Libre Baskerville", serif;
 }
 
 @keyframes pulse {
@@ -672,6 +704,25 @@ nav {
   animation: btn-pulse 0.8s ease-in-out infinite;
 }
 
+.write-btn-still {
+  background-color: #ff383c;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.write-btn-still img {
+  filter: brightness(0) invert(1);
+}
+
 .write-btn:hover {
   animation: btn-pulse 0.8s ease-in-out infinite;
 }
@@ -681,7 +732,7 @@ nav {
   color: #ffffff;
   border: none;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 8px 8px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -717,11 +768,11 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 8px;
   border: none;
   border-radius: "20px";
-  background-color: #d4d1d1;
-  color: #6b6969;
+  background-color: #d8d5cf;
+  color: #6e6e6e;
   font-size: 0.7rem;
   font-weight: 500;
   cursor: pointer;
@@ -818,7 +869,6 @@ nav {
 .close-btn {
   width: 32px;
   height: 32px;
-
   border-radius: o;
   border: none;
   background: #f1f1f1;
@@ -843,7 +893,7 @@ nav {
 
 @media (max-width: 768px) {
   .article-list {
-    padding-top: 110px;
+    padding-top: 140px;
   }
 }
 .comments-page-container {

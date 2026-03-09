@@ -12,6 +12,7 @@ function Thread() {
   const [topicalArticles, setTopicalArticles] = useState([]);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [allTopics, setAllTopics] = useState([]);
+  const [activeId, setActiveId] = useState(null);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -45,10 +46,28 @@ function Thread() {
   ) : (
     <div className="article-list">
       <div className="sort-btns">
-        <button className="sort-btn" onClick={latestHandler}>
+        <button
+          key="latest"
+          className={
+            activeId === "latest" ? "sort-button-active" : "sort-button"
+          }
+          onClick={(e) => {
+            setActiveId("latest");
+            latestHandler();
+          }}
+        >
           latest
         </button>
-        <button className="sort-btn" onClick={popularHandler}>
+        <button
+          key="popular"
+          className={
+            activeId === "popular" ? "sort-button-active" : "sort-button"
+          }
+          onClick={(e) => {
+            setActiveId("popular");
+            popularHandler();
+          }}
+        >
           popular
         </button>
       </div>

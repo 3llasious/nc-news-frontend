@@ -75,7 +75,7 @@ This frontend consumes the NC News REST API. Key endpoints:
 
 **Default article sort:** `created_at`, descending. Queries can be chained: `?sort_by=votes&order=ASC`.
 
-Full API documentation: [https://nc-backend-solosprint.onrender.com/api](https://nc-backend-solosprint.onrender.com/api)
+API documentation: [https://nc-backend-solosprint.onrender.com/api](https://nc-backend-solosprint.onrender.com/api)
 
 ---
 

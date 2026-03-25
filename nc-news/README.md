@@ -43,6 +43,8 @@ npm install
 npm run dev
 ```
 
+Vite includes Hot Module Replacement (HMR) out of the box — no extra configuration needed. Changes to source files reflect in the browser instantly without a full reload.
+
 ---
 
 ## Available Scripts
@@ -75,7 +77,7 @@ This frontend consumes the NC News REST API. Key endpoints:
 
 **Default article sort:** `created_at`, descending. Queries can be chained: `?sort_by=votes&order=ASC`.
 
-API documentation: [https://nc-backend-solosprint.onrender.com/api](https://nc-backend-solosprint.onrender.com/api)
+Full API documentation: [https://nc-backend-solosprint.onrender.com/api](https://nc-backend-solosprint.onrender.com/api)
 
 ---
 
@@ -103,7 +105,7 @@ ESLint is configured out of the box. For production applications, TypeScript wit
 
 - Upvote/downvote on comments — not yet implemented
 - Update a comment — not yet implemented
-- Get a single user by username — not yet implemented
+- Tracking users that have already voted between sessions — requires a refactor of the back-end database schema to track votes in a separate table for persistence. Implemented in a more recent project following reflection on this limitation.
 
 ---
 
